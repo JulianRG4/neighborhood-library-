@@ -66,11 +66,13 @@ public class Book {
         {
             isCheckedOut = true;
             checkedOutTo = name;
-            System.out.println("Book checked out to " + name);
+            System.out.println("Book has been successfully checked out to " + name + "!");
         }
         else
         {
-            System.out.println("Book is already checked out");
+            System.out.print("Sorry this book already checked out");
+            System.out.print("Please try a different book or come back another day");
+            System.out.print("Thank you");
         }
     }
 
@@ -80,11 +82,11 @@ public class Book {
         {
             isCheckedOut = false;
             checkedOutTo = "";
-            System.out.println("Book checked in");
+            System.out.println("Book has been successfully checked in");
         }
         else
         {
-            System.out.println("Book is not checked out");
+            System.out.println("Book is not currently checked out");
         }
     }
     public String toString()

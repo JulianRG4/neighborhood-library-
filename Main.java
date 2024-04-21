@@ -48,11 +48,13 @@ public class Main
             {
                 case 1:
                 showAvailableBooks(libraryBooks);
-                    System.out.println("1)Check Out a Book");
-                    System.out.println("2)Return to Menu");
-                    int subChoise = Integer.parseInt(userInput.nextLine());
-                    switch (subChoise)
+                    System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
+                    System.out.println("1) Checkout Book");
+                    System.out.println("2) Return to Menu");
+                    int subChoice = Integer.parseInt(userInput.nextLine());
+                    switch (subChoice)
                     {
+
                         case 1:
                             checkOutBook(libraryBooks);
                             break;
@@ -64,7 +66,22 @@ public class Main
                 case 2:
                 //searchBy
                     showCheckedOutBooks(libraryBooks);
-                     break;
+                    System.out.println();
+                    System.out.println("(C) Check in Book");
+                    System.out.println("(X) Return to menu");
+                    String subInput = userInput.nextLine().strip().toUpperCase();
+                    switch (subInput) {
+                        case "C":
+                            checkInBook(libraryBooks);
+                            break;
+                        case "X":
+                            break;
+                        default:
+                            System.out.println("Invalid Choice");
+                            break;
+                    }
+                    break;
+
 
                 case 3:
                     System.out.println();
@@ -86,12 +103,13 @@ public class Main
     {
         System.out.println();
         System.out.println("Available Books");
-        System.out.println("---------------");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("Book ID:                              Book ISBN:                           Book Title:                          is Checked Out:                  ");
 
 
         for (Book book : libraryBooks) {
             if (!book.isCheckedOut()) {
-                System.out.printf("%-30d | %-30s | %-30s | %-30b | %-30s\n",book.getBookId(), book.getBookIsbn(), book.getBookTitle(), book.isCheckedOut(), book.getCheckedOutTo());
+                System.out.printf("%-35d | %-35s | %-35s | %-35b | %-35s\n",book.getBookId(), book.getBookIsbn(), book.getBookTitle(), book.isCheckedOut(), book.getCheckedOutTo());
             }
         }
 
@@ -113,7 +131,7 @@ public class Main
 
     public static void checkOutBook(Book[] libraryBooks)
     {
-        System.out.println("\nEnter Book ID");
+        System.out.println("Enter Book ID:");
         int bookId = Integer.parseInt(userInput.nextLine());
 
         for(Book book : libraryBooks)
@@ -133,5 +151,26 @@ public class Main
             }
         }
 
+    }
+
+    public static void checkInBook(Book[] libraryBooks)
+    {
+        System.out.println("\n Enter Book ID");
+        int bookId = Integer.parseInt(userInput.nextLine());
+
+        boolean bookFound = false;
+        for(Book book : libraryBooks)
+        {
+            if (book.getBookId() == bookId && book.isCheckedOut())
+            {
+                book.checkIn();
+                bookFound =true;
+                break;
+            }
+        }
+        if(!bookFound)
+        {
+            System.out.println("Book is not checked out");
+        }
     }
 }
