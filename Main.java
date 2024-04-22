@@ -51,6 +51,7 @@ public class Main
                     System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
                     System.out.println("1) Checkout Book");
                     System.out.println("2) Return to Menu");
+
                     int subChoice = Integer.parseInt(userInput.nextLine());
                     switch (subChoice)
                     {
@@ -60,6 +61,8 @@ public class Main
                             break;
                         case 2:
                             break;
+
+
                     }
                      break;
 
@@ -70,6 +73,7 @@ public class Main
                     System.out.println("(C) Check in Book");
                     System.out.println("(X) Return to menu");
                     String subInput = userInput.nextLine().strip().toUpperCase();
+
                     switch (subInput) {
                         case "C":
                             checkInBook(libraryBooks);
@@ -88,13 +92,11 @@ public class Main
                     System.out.println("GoodBye!");
                     break;
 
-                default:
-                    System.out.println();
-                    System.out.println("Invalid Selection");
             }
             System.out.println();
             System.out.println("Press Enter to Continue");
             userInput.nextLine();
+
 
         }
     }
@@ -118,15 +120,19 @@ public class Main
     public static void showCheckedOutBooks(Book[] libraryBooks)
     {
         System.out.println("Books Checked out");
-        System.out.println("---------------");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("Book ID:                        Book ISBN:                        Book Title:                     is checked out:                 Checked out it:                  ");
 
                 for (Book book : libraryBooks)
                 {
                     if(book.isCheckedOut())
                     {
                         System.out.printf("%-30d | %-30s | %-30s | %-30b | %-30s", book.getBookId(), book.getBookIsbn(), book.getBookTitle(), book.isCheckedOut(), book.getCheckedOutTo());
+                        System.out.println();
+                        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
                     }
                 }
+
     }
 
     public static void checkOutBook(Book[] libraryBooks)
